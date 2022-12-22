@@ -13,7 +13,6 @@ public class paper extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public static int countP = 0;
-    public static int count = 0;
     
     public static int timer = 10;
     
@@ -32,13 +31,14 @@ public class paper extends Actor
         bob();
         timer++;
     }    
-    
+
+// Bobs the objects up and down giving a better feel for the game
     public void bob()
     {
         int y = getY();
-        if(timer % 20 == 0)
+        if(timer % 10 == 0)
         {
-            y = y - 2;
+            y = y - 1;
         }
         if(timer % 20 == 10)
         {

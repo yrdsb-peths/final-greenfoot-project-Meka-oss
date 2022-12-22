@@ -32,12 +32,14 @@ public class scissors extends Actor
         timer++;
     }    
     
+    
+// Bobs the objects up and down giving a better feel for the game
     public void bob()
     {
         int y = getY();
-        if(timer % 20 == 0)
+        if(timer % 10 == 0)
         {
-            y = y - 2;
+            y = y - 1;
         }
         if(timer % 20 == 10)
         {
