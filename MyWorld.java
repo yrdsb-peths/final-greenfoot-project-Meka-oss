@@ -19,6 +19,9 @@ public class MyWorld extends World
         super(600, 400, 1);
         rock obj1 = new rock();
         addObject(obj1,300,200);
-        
+        scissors obj2 = new scissors();
+        addObject(obj2,400,200);
+        paper obj3 = new paper();
+        addObject(obj3,200,200);
     }
 }

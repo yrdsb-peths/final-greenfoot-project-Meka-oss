@@ -8,10 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class rps extends Actor
 {
-    public int countR = 0;
-    public int countP = 0;
-    public int countS = 0;
-    public int count = 0;
+    public static int countR = 0;
+    public static int countP = 0;
+    public static int countS = 0;
+    public static int count = 0;
+    
+    public static int timer = 0;
     
     public rps(String type)
     {
@@ -35,6 +37,6 @@ public class rps extends Actor
     
     public void act() 
     {
-        // Add your action code here.
+        timer++;
     }    
 }
