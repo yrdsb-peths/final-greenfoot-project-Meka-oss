@@ -19,6 +19,7 @@ public class scissors extends Actor
     {
         sc.scale(50,50);
         setImage(sc);
+        setRotation(180);
     }
     
     public void act() 
@@ -26,6 +27,7 @@ public class scissors extends Actor
         timer++;
         bob();
         bump();
+        move(1);
     }    
     
     public int y;

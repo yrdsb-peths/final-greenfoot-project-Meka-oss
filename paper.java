@@ -20,6 +20,7 @@ public class paper extends Actor
     {
         pp.scale(50,50);
         setImage(pp);
+        
     }
     
     public void act() 

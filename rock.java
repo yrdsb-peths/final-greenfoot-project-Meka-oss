@@ -27,6 +27,7 @@ public class rock extends Actor
         timer++;
         bob();
         bump();
+        move(1);
     }    
     
     public int y;

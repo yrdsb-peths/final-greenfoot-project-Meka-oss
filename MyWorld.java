@@ -22,7 +22,7 @@ public class MyWorld extends World
         scissors obj1 = new scissors();
         addObject(obj1,400,200);
         paper obj2 = new paper();
-        addObject(obj2,30,200);
+        addObject(obj2,300,200);
         rock obj3 = new rock();
         addObject(obj3,200,200);
     }
