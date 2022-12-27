@@ -12,8 +12,54 @@ public class paper extends Actor
      * Act - do whatever the paper wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    public int timer = 0;
+    
+    GreenfootImage pp = new GreenfootImage("\\images\\paper.png");
+    public paper()
+    {
+        pp.scale(50,50);
+        setImage(pp);
+    }
+    
     public void act() 
     {
-        // Add your action code here.
+        timer++;
+        bob();
+        move(1);
+        bump();
     }    
+    
+    public int y;
+    public void bob()
+    {
+        y = getY();
+        if(timer%20==0)
+        {
+            y = y+2;
+            setLocation(getX(),y);
+        }
+        if(timer%10==0)
+        {
+            y = y-1;
+            setLocation(getX(),y);
+        }
+        
+    }
+    
+    MyWorld world = (MyWorld) getWorld();
+    
+    public void bump()
+    {
+        if(isTouching(scissors.class))
+        {
+            MyWorld world = (MyWorld) getWorld();
+            world.toAddX[world.toAdd] = getX();
+            world.toAddY[world.toAdd] = getY();
+            world.toAddType[world.toAdd] = "scissors";
+            world.removeObject(this);
+            world.replace(world.toAdd);
+            world.toAdd++;
+        }
+    }
 }
