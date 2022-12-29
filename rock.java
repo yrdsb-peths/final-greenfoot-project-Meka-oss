@@ -13,6 +13,7 @@ public class rock extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
+    public static int count = 0;
     public int timer = 0;
     
     GreenfootImage rk = new GreenfootImage("\\images\\rock.png");
@@ -22,12 +23,16 @@ public class rock extends Actor
         setImage(rk);
     }
     
+    public int speed = 1;
     public void act() 
     {
         timer++;
         bob();
         bump();
-        move(1);
+        if(timer % 5 == 0)
+        {
+            shift();
+        }
     }    
     
     public int y;
@@ -60,5 +65,17 @@ public class rock extends Actor
             world.replace(world.toAdd);
             world.toAdd++;
         }
+    }
+    
+    public void shift()
+    {
+        int changeY = Greenfoot.getRandomNumber(6) - 3;
+        int changeX = Greenfoot.getRandomNumber(6) - 3;
+        
+        changeY = getY() + changeY;
+        changeX = getX() + changeX;
+        
+        
+        setLocation(changeX,changeY);
     }
 }

@@ -12,6 +12,8 @@ public class scissors extends Actor
      * Act - do whatever the scissors wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    public static int count = 0;
     public int timer = 0;
     
     GreenfootImage sc = new GreenfootImage("\\images\\scissors.png");
@@ -28,6 +30,10 @@ public class scissors extends Actor
         bob();
         bump();
         move(1);
+        if(timer % 5 == 0)
+        {
+            shift();
+        }
     }    
     
     public int y;
@@ -61,5 +67,18 @@ public class scissors extends Actor
             world.replace(world.toAdd);
             world.toAdd++;
         }
+    }
+    
+    
+    public void shift()
+    {
+        int changeY = Greenfoot.getRandomNumber(6) - 3;
+        int changeX = Greenfoot.getRandomNumber(6) - 3;
+        
+        changeY = getY() + changeY;
+        changeX = getX() + changeX;
+        
+        
+        setLocation(changeX,changeY);
     }
 }

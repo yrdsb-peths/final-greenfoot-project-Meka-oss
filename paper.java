@@ -14,7 +14,7 @@ public class paper extends Actor
      */
     
     public int timer = 0;
-    
+    public static int count = 0;
     GreenfootImage pp = new GreenfootImage("\\images\\paper.png");
     public paper()
     {
@@ -29,6 +29,10 @@ public class paper extends Actor
         bob();
         move(1);
         bump();
+        if(timer % 5 == 0)
+        {
+            shift();
+        }
     }    
     
     public int y;
@@ -62,5 +66,18 @@ public class paper extends Actor
             world.replace(world.toAdd);
             world.toAdd++;
         }
+    }
+    
+    
+    public void shift()
+    {
+        int changeY = Greenfoot.getRandomNumber(6) - 3;
+        int changeX = Greenfoot.getRandomNumber(6) - 3;
+        
+        changeY = getY() + changeY;
+        changeX = getX() + changeX;
+        
+        
+        setLocation(changeX,changeY);
     }
 }
