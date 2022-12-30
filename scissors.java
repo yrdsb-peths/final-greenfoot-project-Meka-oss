@@ -28,12 +28,11 @@ public class scissors extends Actor
     {
         timer++;
         bob();
-        bump();
-        move(1);
         if(timer % 5 == 0)
         {
             shift();
         }
+        bump();
     }    
     
     public int y;
@@ -70,15 +69,43 @@ public class scissors extends Actor
     }
     
     
+   int changeX;
+    int changeY;
+    int destinationX = (Greenfoot.getRandomNumber(500)) + 50;
+    int destinationY = (Greenfoot.getRandomNumber(500)) + 50;
+    
     public void shift()
     {
-        int changeY = Greenfoot.getRandomNumber(6) - 3;
-        int changeX = Greenfoot.getRandomNumber(6) - 3;
+        changeX = getX();
+        changeY = getY();
+    
+        if(getX() > destinationX)
+        {
+            changeX--;
+        }
+        else if(getX() < destinationX)
+        {
+            changeX++;
+        }
         
-        changeY = getY() + changeY;
-        changeX = getX() + changeX;
+        if(getY() > destinationY)
+        {
+            changeY--;
+        }
+        else if(getY() < destinationY)
+        {
+            changeY++;
+        }
         
-        
-        setLocation(changeX,changeY);
+        if(timer % 2 ==0)
+        {
+            if(changeX == destinationX && changeY == destinationY)
+            {
+                destinationX = (Greenfoot.getRandomNumber(500)) + 50;
+                destinationY = (Greenfoot.getRandomNumber(500)) + 50;
+                System.out.println("destination reached");
+            }
+            setLocation(changeX,changeY);
+        }
     }
 }

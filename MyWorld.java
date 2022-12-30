@@ -23,8 +23,14 @@ public class MyWorld extends World
         rock.count = 0;
         paper.count = 0;
         scissors.count = 0;
-        
+
         addRPS();
+        addRPS();
+        addRPS();
+        addRPS();
+        addRPS();
+        addRPS();
+        
     }
     
     
@@ -43,7 +49,6 @@ public class MyWorld extends World
             addObject(obj4,toAddX[index],toAddY[index]);
             paper.count--;
             scissors.count++;
-            totalCount++;
         }
         else if(toAddType[index]=="rock")
         {
@@ -51,7 +56,6 @@ public class MyWorld extends World
             addObject(obj4,toAddX[index],toAddY[index]);
             rock.count++;
             scissors.count--;
-            totalCount++;
         }
         else if(toAddType[index]=="paper")
         {
@@ -59,22 +63,22 @@ public class MyWorld extends World
             addObject(obj4,toAddX[index],toAddY[index]);
             rock.count--;
             paper.count++;
-            totalCount++;
         }
     }
     
     public void addRPS()
     {
+        
         scissors obj1 = new scissors();
-        addObject(obj1,100,100);
+        addObject(obj1,Greenfoot.getRandomNumber(500) + 50,Greenfoot.getRandomNumber(500) + 50);
         scissors.count++;
         
         paper obj2 = new paper();
-        addObject(obj2,300,300);
+        addObject(obj2,Greenfoot.getRandomNumber(500) + 50,Greenfoot.getRandomNumber(500) + 50);
         paper.count++;
         
         rock obj3 = new rock();
-        addObject(obj3,500,500);
+        addObject(obj3,Greenfoot.getRandomNumber(500) + 50,Greenfoot.getRandomNumber(500) + 50);
         rock.count++;
     }
 }
