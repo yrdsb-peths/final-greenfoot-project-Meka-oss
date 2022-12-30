@@ -6,52 +6,29 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class rock extends Actor
+public class rock extends rps
 {
     /**
      * Act - do whatever the rock wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    
-    public static int count = 0;
-    public int timer = 0;
-    
-    GreenfootImage rk = new GreenfootImage("\\images\\rock.png");
+
     public rock()
     {
+        super("rock");
         rk.scale(50,50);
         setImage(rk);
     }
     
-    public int speed = 1;
     public void act() 
     {
-        timer++;
         bob();
         if(timer % 5 == 0)
         {
             shift();
         }
         bump();
-    }    
-    
-    public int y;
-    public void bob()
-    {
-        y = getY();
-        if(timer%20==0)
-        {
-            y = y+2;
-            setLocation(getX(),y);
-        }
-        if(timer%10==0)
-        {
-            y = y-1;
-            setLocation(getX(),y);
-        }
-        
     }
-    
     
     public void bump()
     {
@@ -66,44 +43,5 @@ public class rock extends Actor
             world.toAdd++;
         }
     }
-    
-    int changeX;
-    int changeY;
-    int destinationX = (Greenfoot.getRandomNumber(500)) + 50;
-    int destinationY = (Greenfoot.getRandomNumber(500)) + 50;
-    
-    public void shift()
-    {
-        changeX = getX();
-        changeY = getY();
-    
-        if(getX() > destinationX)
-        {
-            changeX--;
-        }
-        else if(getX() < destinationX)
-        {
-            changeX++;
-        }
-        
-        if(getY() > destinationY)
-        {
-            changeY--;
-        }
-        else if(getY() < destinationY)
-        {
-            changeY++;
-        }
-        
-        if(timer % 2 ==0)
-        {
-            if(changeX == destinationX && changeY == destinationY)
-            {
-                destinationX = (Greenfoot.getRandomNumber(500)) + 50;
-                destinationY = (Greenfoot.getRandomNumber(500)) + 50;
-                System.out.println("destination reached");
-            }
-            setLocation(changeX,changeY);
-        }
-    }
+
 }

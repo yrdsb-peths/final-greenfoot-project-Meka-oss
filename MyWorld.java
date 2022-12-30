@@ -15,15 +15,24 @@ public class MyWorld extends World
      */
     
     
+    public int rockCount;
+    public int paperCount;
+    public int scissorsCount;
+    Label countP = new Label(0,50);
+        
+    Label countR = new Label(0,50);
+    
+    Label countS = new Label(0,50);
+    
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 600, 1);
         totalCount = 0;
-        rock.count = 0;
-        paper.count = 0;
-        scissors.count = 0;
-
+        rockCount = 0;
+        paperCount = 0;
+        scissorsCount = 0;
+        
         addRPS();
         addRPS();
         addRPS();
@@ -31,6 +40,16 @@ public class MyWorld extends World
         addRPS();
         addRPS();
         
+        rps time = new Timer(0,100);
+        addObject(time,100,100);
+        
+        
+        
+        addObject(countP,550,50);
+        
+        addObject(countR,500,50);
+        
+        addObject(countS,450,50);
     }
     
     
@@ -45,40 +64,43 @@ public class MyWorld extends World
     {
         if(toAddType[index]=="scissors")
         {
-            scissors obj4 = new scissors();
+            rps obj4 = new scissors();
             addObject(obj4,toAddX[index],toAddY[index]);
-            paper.count--;
-            scissors.count++;
+            paperCount--;
+            scissorsCount++;
         }
         else if(toAddType[index]=="rock")
         {
-            rock obj4 = new rock();
+            rps obj4 = new rock();
             addObject(obj4,toAddX[index],toAddY[index]);
-            rock.count++;
-            scissors.count--;
+            rockCount++;
+            scissorsCount--;
         }
         else if(toAddType[index]=="paper")
         {
-            paper obj4 = new paper();
+            rps obj4 = new paper();
             addObject(obj4,toAddX[index],toAddY[index]);
-            rock.count--;
-            paper.count++;
+            rockCount--;
+            paperCount++;
         }
+        countP.setValue(paperCount);
+        countS.setValue(scissorsCount);
+        countR.setValue(rockCount);
     }
     
     public void addRPS()
     {
         
-        scissors obj1 = new scissors();
+        rps obj1 = new rock();
         addObject(obj1,Greenfoot.getRandomNumber(500) + 50,Greenfoot.getRandomNumber(500) + 50);
-        scissors.count++;
+        rockCount++;
         
-        paper obj2 = new paper();
+        rps obj2 = new paper();
         addObject(obj2,Greenfoot.getRandomNumber(500) + 50,Greenfoot.getRandomNumber(500) + 50);
-        paper.count++;
+        paperCount++;
         
-        rock obj3 = new rock();
+        rps obj3 = new scissors();
         addObject(obj3,Greenfoot.getRandomNumber(500) + 50,Greenfoot.getRandomNumber(500) + 50);
-        rock.count++;
+        scissorsCount++;
     }
 }

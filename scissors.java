@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class scissors extends Actor
+public class scissors extends rps
 {
     /**
      * Act - do whatever the scissors wants to do. This method is called whenever
@@ -15,10 +15,11 @@ public class scissors extends Actor
     
     public static int count = 0;
     public int timer = 0;
-    
+     
     GreenfootImage sc = new GreenfootImage("\\images\\scissors.png");
     public scissors()
     {
+        super("scissors");
         sc.scale(50,50);
         setImage(sc);
         setRotation(180);
@@ -26,33 +27,13 @@ public class scissors extends Actor
     
     public void act() 
     {
-        timer++;
         bob();
         if(timer % 5 == 0)
         {
             shift();
         }
         bump();
-    }    
-    
-    public int y;
-    public void bob()
-    {
-        y = getY();
-        if(timer%20==0)
-        {
-            y = y+2;
-            setLocation(getX(),y);
-        }
-        if(timer%10==0)
-        {
-            y = y-1;
-            setLocation(getX(),y);
-        }
-        
     }
-    
-    MyWorld world = (MyWorld) getWorld();
     
     public void bump()
     {
@@ -65,47 +46,6 @@ public class scissors extends Actor
             world.removeObject(this);
             world.replace(world.toAdd);
             world.toAdd++;
-        }
-    }
-    
-    
-   int changeX;
-    int changeY;
-    int destinationX = (Greenfoot.getRandomNumber(500)) + 50;
-    int destinationY = (Greenfoot.getRandomNumber(500)) + 50;
-    
-    public void shift()
-    {
-        changeX = getX();
-        changeY = getY();
-    
-        if(getX() > destinationX)
-        {
-            changeX--;
-        }
-        else if(getX() < destinationX)
-        {
-            changeX++;
-        }
-        
-        if(getY() > destinationY)
-        {
-            changeY--;
-        }
-        else if(getY() < destinationY)
-        {
-            changeY++;
-        }
-        
-        if(timer % 2 ==0)
-        {
-            if(changeX == destinationX && changeY == destinationY)
-            {
-                destinationX = (Greenfoot.getRandomNumber(500)) + 50;
-                destinationY = (Greenfoot.getRandomNumber(500)) + 50;
-                System.out.println("destination reached");
-            }
-            setLocation(changeX,changeY);
         }
     }
 }
