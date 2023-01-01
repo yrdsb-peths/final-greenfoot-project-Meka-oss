@@ -93,11 +93,13 @@ public class Timer extends rps
         setImage(new GreenfootImage(value, fontSize, fillColor, transparent, lineColor));
     }
     
-    int counter = 0;
+    static int counter = 0;
+    public static String winner = "";
     public void pauseGame()
     {
         MyWorld world = (MyWorld) getWorld();
         world.endGame();
+        winner = world.winner;
         if(counter <= 0 && Greenfoot.isKeyDown("space") && world.gameEnd == false)
         {
             world.gamePause = !world.gamePause;

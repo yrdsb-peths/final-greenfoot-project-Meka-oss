@@ -95,6 +95,11 @@ public class Label extends rps
     
     public void act()
     {
-        
+        if (this.getWorld().getClass() == endWorld.class) {
+            setValue(Timer.winner + " Wins");
+            endWorld.newGame();
+            Timer.counter = 10;
+            Timer.timer = 0;
+        }
     }
 }

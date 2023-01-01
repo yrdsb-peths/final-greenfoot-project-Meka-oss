@@ -115,7 +115,7 @@ public class MyWorld extends World
     public boolean gamePause = false;
     public boolean gameEnd = false;
     
-    public static String winner = "";
+    public String winner = "";
     
     public void endGame()
     {
@@ -124,21 +124,21 @@ public class MyWorld extends World
         {
             gamePause = true;
             gameEnd = true;
-            endWorld.text = "Rock";
+            winner = "Rock";
             Greenfoot.setWorld(endWorld);
         }
         else if(paperCount == totalCount)
         {
             gamePause = true;
             gameEnd = true;
-            endWorld.text = "Paper";
+            winner = "Paper";
             Greenfoot.setWorld(endWorld);
         }
         else if(scissorsCount == totalCount)
         {
             gamePause = true;
             gameEnd = true;
-            endWorld.text = "Scissor";
+            winner = "Scissor";
             Greenfoot.setWorld(endWorld);
         }
     }
