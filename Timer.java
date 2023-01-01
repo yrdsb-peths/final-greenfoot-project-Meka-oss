@@ -93,9 +93,24 @@ public class Timer extends rps
         setImage(new GreenfootImage(value, fontSize, fillColor, transparent, lineColor));
     }
     
+    int counter = 0;
+    public void pauseGame()
+    {
+        MyWorld world = (MyWorld) getWorld();
+        world.endGame();
+        if(counter <= 0 && Greenfoot.isKeyDown("space") && world.gameEnd == false)
+        {
+            world.gamePause = !world.gamePause;
+            counter = 10;
+        }
+        
+    }
+    
     public void act()
     {
+        pauseGame();
         timer++;
+        counter--;
         if(timer%60==0)
         {
             setValue(timer/60);

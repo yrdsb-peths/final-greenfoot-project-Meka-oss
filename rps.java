@@ -73,43 +73,47 @@ public class rps extends Actor
     
     int changeX;
     int changeY;
-    public static int destinationX = (Greenfoot.getRandomNumber(500)) + 50;
-    public static int destinationY = (Greenfoot.getRandomNumber(500)) + 50;
+    public int destinationX = (Greenfoot.getRandomNumber(500)) + 50;
+    public int destinationY = (Greenfoot.getRandomNumber(500)) + 50;
     
     public void shift()
     {
-        changeX = getX();
-        changeY = getY();
-        
-        if(second % 2 == 0)
+        MyWorld world = (MyWorld) getWorld();
+        if(world.gamePause == false && world.gameEnd == false)
         {
-            destinationX = (Greenfoot.getRandomNumber(500)) + 50;
-            destinationY = (Greenfoot.getRandomNumber(500)) + 50;
+            changeX = getX();
+            changeY = getY();
             
-        }
-    
-        if(getX() > destinationX)
-        {
-            changeX--;
-            changeX--;
-        }
-        else if(getX() < destinationX)
-        {
-            changeX++;
-            changeX++;
-        }
+            if(second % 2 == 0)
+            {
+                destinationX = (Greenfoot.getRandomNumber(500)) + 50;
+                destinationY = (Greenfoot.getRandomNumber(500)) + 50;
+                
+            }
         
-        if(getY() > destinationY)
-        {
-            changeY--;
-            changeY--;
+            if(getX() > destinationX)
+            {
+                changeX--;
+                changeX--;
+            }
+            else if(getX() < destinationX)
+            {
+                changeX++;
+                changeX++;
+            }
+            
+            if(getY() > destinationY)
+            {
+                changeY--;
+                changeY--;
+            }
+            else if(getY() < destinationY)
+            {
+                changeY++;
+                changeY++;
+            }
+            
+            setLocation(changeX,changeY);
         }
-        else if(getY() < destinationY)
-        {
-            changeY++;
-            changeY++;
-        }
-        
-        setLocation(changeX,changeY);
     }
 }
