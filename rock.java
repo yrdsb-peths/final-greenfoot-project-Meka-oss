@@ -12,11 +12,13 @@ public class rock extends rps
      * Act - do whatever the rock wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    public int timer = 0;
 
     public rock()
     {
         super("rock");
-        rk.scale(50,50);
+        rk.scale(size,size);
         setImage(rk);
     }
     

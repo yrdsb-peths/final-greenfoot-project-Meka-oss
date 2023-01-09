@@ -28,10 +28,13 @@ public class MyWorld extends World
     Label countS = new Label(0,50);
     Label S = new Label("Scissor",20);
     
+    wager sidebar = new wager();
+
+    
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a c   ell size of 1x1 pixels.
-        super(600, 600, 1);
+        super(800, 600, 1);
         totalCount = 0;
         rockCount = 0;
         paperCount = 0;
@@ -43,7 +46,14 @@ public class MyWorld extends World
         addRPS();
         addRPS();
         addRPS();
+        addRPS();
+        addRPS();
+        addRPS();
+        addRPS();
+        addRPS();
+        addRPS();
         
+        rps.timer = 0;
         rps time = new Timer(0,100);
         addObject(time,75,75);
         
@@ -52,11 +62,14 @@ public class MyWorld extends World
         addObject(countS,550,50);
         addObject(S,550,20);
         
-        addObject(countP,500,50);
-        addObject(P,500,20);
+        addObject(countP,495,50);
+        addObject(P,495,20);
         
-        addObject(countR,450,50);
-        addObject(R,450,20);
+        addObject(countR,445,50);
+        addObject(R,445,20);
+        
+        
+        addObject(sidebar,700,300);
     }
     
     
@@ -125,21 +138,21 @@ public class MyWorld extends World
             gamePause = true;
             gameEnd = true;
             winner = "Rock";
-            Greenfoot.setWorld(endWorld);
+            
         }
         else if(paperCount == totalCount)
         {
             gamePause = true;
             gameEnd = true;
             winner = "Paper";
-            Greenfoot.setWorld(endWorld);
+            
         }
         else if(scissorsCount == totalCount)
         {
             gamePause = true;
             gameEnd = true;
             winner = "Scissor";
-            Greenfoot.setWorld(endWorld);
+            
         }
     }
 }

@@ -15,6 +15,7 @@ public class rps extends Actor
     public static int second = 0;
     public static int timer = 0;
     public String type;
+    public int size = 30;
     
     GreenfootImage rk = new GreenfootImage("\\images\\rock.png");
     GreenfootImage pp = new GreenfootImage("\\images\\paper.png");
@@ -84,7 +85,7 @@ public class rps extends Actor
             changeX = getX();
             changeY = getY();
             
-            if(second % 2 == 0)
+            if(timer % 60 == 0)
             {
                 destinationX = (Greenfoot.getRandomNumber(500)) + 50;
                 destinationY = (Greenfoot.getRandomNumber(500)) + 50;
@@ -94,22 +95,19 @@ public class rps extends Actor
             if(getX() > destinationX)
             {
                 changeX--;
-                changeX--;
+
             }
             else if(getX() < destinationX)
             {
-                changeX++;
                 changeX++;
             }
             
             if(getY() > destinationY)
             {
                 changeY--;
-                changeY--;
             }
             else if(getY() < destinationY)
             {
-                changeY++;
                 changeY++;
             }
             

@@ -15,12 +15,11 @@ public class scissors extends rps
     
     public static int count = 0;
     public int timer = 0;
-     
-    GreenfootImage sc = new GreenfootImage("\\images\\scissors.png");
+    
     public scissors()
     {
         super("scissors");
-        sc.scale(50,50);
+        sc.scale(size,size);
         setImage(sc);
         setRotation(180);
     }

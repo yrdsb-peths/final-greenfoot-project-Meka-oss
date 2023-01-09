@@ -15,11 +15,11 @@ public class paper extends rps
     
     public int timer = 0;
     public static int count = 0;
-    GreenfootImage pp = new GreenfootImage("\\images\\paper.png");
+    
     public paper()
     {
         super("paper");
-        pp.scale(50,50);
+        pp.scale(size,size);
         setImage(pp);
         
     }
