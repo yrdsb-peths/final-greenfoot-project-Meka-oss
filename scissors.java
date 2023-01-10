@@ -26,11 +26,7 @@ public class scissors extends rps
     
     public void act() 
     {
-        bob();
-        if(timer % 5 == 0)
-        {
-            shift();
-        }
+        shift();
         bump();
     }
     

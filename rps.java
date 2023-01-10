@@ -11,8 +11,8 @@ public class rps extends Actor
     /**
      * Act - do whatever the rps wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public static int second = 0;
+     */    
+    
     public static int timer = 0;
     public String type;
     public int size = 30;
@@ -20,6 +20,7 @@ public class rps extends Actor
     GreenfootImage rk = new GreenfootImage("\\images\\rock.png");
     GreenfootImage pp = new GreenfootImage("\\images\\paper.png");
     GreenfootImage sc = new GreenfootImage("\\images\\scissors.png");
+    
     public rps(String ftype)
     {
         MyWorld world = (MyWorld) getWorld();
@@ -35,32 +36,7 @@ public class rps extends Actor
         {
             world.scissorsCount++;
         }
-        else if(type == "timer")
-        {
-            
-        }
         type = ftype;
-    }
-    
-    public void act() 
-    {
-    }    
-    
-    public int y;
-    public void bob()
-    {
-        y = getY();
-        if(timer%20==0)
-        {
-            y = y+2;
-            setLocation(getX(),y);
-        }
-        if(timer%10==0)
-        {
-            y = y-1;
-            setLocation(getX(),y);
-        }
-        
     }
     
     public int change(int c)
@@ -68,9 +44,7 @@ public class rps extends Actor
         return c - Greenfoot.getRandomNumber(c*2);
     }
     
-    public void bump()
-    {
-    }
+    public void bump(){}
     
     int changeX;
     int changeY;
@@ -78,7 +52,7 @@ public class rps extends Actor
     public int destinationY = (Greenfoot.getRandomNumber(500)) + 50;
     
     public void shift()
-    {
+    {        
         MyWorld world = (MyWorld) getWorld();
         if(world.gamePause == false && world.gameEnd == false)
         {
@@ -87,15 +61,14 @@ public class rps extends Actor
             
             if(timer % 60 == 0)
             {
-                destinationX = (Greenfoot.getRandomNumber(500)) + 50;
-                destinationY = (Greenfoot.getRandomNumber(500)) + 50;
+                destinationX = (Greenfoot.getRandomNumber(600));
+                destinationY = (Greenfoot.getRandomNumber(600));
                 
             }
         
             if(getX() > destinationX)
             {
                 changeX--;
-
             }
             else if(getX() < destinationX)
             {
@@ -112,6 +85,16 @@ public class rps extends Actor
             }
             
             setLocation(changeX,changeY);
+            
+        }
+    }
+    
+    public void remove() {
+        MyWorld world = (MyWorld) getWorld();
+        if(world.gameEnd==true)
+        {
+            world.removeObject(this);
+            world.startup();
         }
     }
 }

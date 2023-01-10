@@ -28,13 +28,34 @@ public class MyWorld extends World
     Label countS = new Label(0,50);
     Label S = new Label("Scissor",20);
     
-    wager sidebar = new wager();
-
+    wager border = new wager("border");
+    Label scoreLabel = new Label(10,100);
     
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a c   ell size of 1x1 pixels.
         super(800, 600, 1);
+        
+        startup();
+        
+        rps time = new Timer(0,100);
+        addObject(time,75,75);
+        
+        addObject(countS,550,50);
+        addObject(S,550,20);
+        
+        addObject(countP,495,50);
+        addObject(P,495,20);
+        
+        addObject(countR,445,50);
+        addObject(R,445,20);
+        
+        addObject(border,700,300);
+        addObject(scoreLabel,700,300);
+    }
+    
+    public void startup()
+    {
         totalCount = 0;
         rockCount = 0;
         paperCount = 0;
@@ -54,28 +75,20 @@ public class MyWorld extends World
         addRPS();
         
         rps.timer = 0;
-        rps time = new Timer(0,100);
-        addObject(time,75,75);
         
+        gameEnd = false;
+        gamePause = false;
         
-        
-        addObject(countS,550,50);
-        addObject(S,550,20);
-        
-        addObject(countP,495,50);
-        addObject(P,495,20);
-        
-        addObject(countR,445,50);
-        addObject(R,445,20);
-        
-        
-        addObject(sidebar,700,300);
+        toAddX = new int[300];
+        toAddY = new int[300];
+        toAddType = new String[300];
+        toAdd = 0;
     }
     
     
     public int[] toAddX = new int[300];
     public int[] toAddY = new int[300];
-    public String[] toAddType = new String[300];
+    public String[] toAddType = new String[30000];
     public int toAdd = 0;
     
     public int totalCount;
@@ -122,6 +135,7 @@ public class MyWorld extends World
         rps obj3 = new scissors();
         addObject(obj3,Greenfoot.getRandomNumber(500) + 50,Greenfoot.getRandomNumber(500) + 50);
         scissorsCount++;
+        
         totalCount = totalCount + 3;
     }
     
@@ -132,7 +146,6 @@ public class MyWorld extends World
     
     public void endGame()
     {
-        endWorld endWorld = new endWorld();
         if(rockCount == totalCount)
         {
             gamePause = true;

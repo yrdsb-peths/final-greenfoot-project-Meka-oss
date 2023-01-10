@@ -116,7 +116,7 @@ public class Timer extends rps
         if(timer%60==0)
         {
             setValue(timer/60);
-            second++;
         }
+        remove();
     }
 }
