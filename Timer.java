@@ -98,6 +98,7 @@ public class Timer extends rps
     public void pauseGame()
     {
         MyWorld world = (MyWorld) getWorld();
+        world.countTotal.setValue(world.totalCount);
         world.endGame();
         winner = world.winner;
         if(counter <= 0 && Greenfoot.isKeyDown("space") && world.gameEnd == false)

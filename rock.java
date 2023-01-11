@@ -26,6 +26,7 @@ public class rock extends rps
     {
         shift();
         bump();
+        remove();
     }
     
     public void bump()

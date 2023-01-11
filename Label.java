@@ -11,7 +11,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Amjad Altadmri 
  * @version 1.1
  */
-public class Label extends rps
+public class Label extends Actor
 {
     private String value;
     private int fontSize;
@@ -34,7 +34,6 @@ public class Label extends rps
      */
     public Label(String value, int fontSize)
     {
-        super("timer");
         this.value = value;
         this.fontSize = fontSize;
         updateImage();

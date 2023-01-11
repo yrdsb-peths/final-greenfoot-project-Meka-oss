@@ -28,6 +28,7 @@ public class scissors extends rps
     {
         shift();
         bump();
+        remove();
     }
     
     public void bump()

@@ -28,6 +28,7 @@ public class paper extends rps
     {
         shift();
         bump();
+        remove();
     }    
     
     MyWorld world = (MyWorld) getWorld();

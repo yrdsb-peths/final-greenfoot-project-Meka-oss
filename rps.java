@@ -91,9 +91,11 @@ public class rps extends Actor
     
     public void remove() {
         MyWorld world = (MyWorld) getWorld();
+        if(world != null)
+
         if(world.gameEnd==true)
         {
-            world.removeObject(this);
+            getWorld().removeObjects(getWorld().getObjects(rps.class));
             world.startup();
         }
     }
