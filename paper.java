@@ -6,44 +6,44 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class paper extends Actor
+public class paper extends rps
 {
     /**
      * Act - do whatever the rock wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public static int countP = 0;
     
-    public static int timer = 10;
+    public int timer = 0;
+    public static int count = 0;
     
-    
-    
-    GreenfootImage pp = new GreenfootImage("\\images\\paper.png");
     public paper()
     {
-        pp.scale(50,50);
+        super("paper");
+        pp.scale(size,size);
         setImage(pp);
-        countP++;
+        
     }
     
     public void act() 
     {
-        bob();
-        timer++;
+        shift();
+        bump();
+        remove();
     }    
-
-// Bobs the objects up and down giving a better feel for the game
-    public void bob()
+    
+    MyWorld world = (MyWorld) getWorld();
+    
+    public void bump()
     {
-        int y = getY();
-        if(timer % 10 == 0)
+        if(isTouching(scissors.class))
         {
-            y = y - 1;
+            MyWorld world = (MyWorld) getWorld();
+            world.toAddX[world.toAdd] = getX();
+            world.toAddY[world.toAdd] = getY();
+            world.toAddType[world.toAdd] = "scissors";
+            world.removeObject(this);
+            world.replace(world.toAdd);
+            world.toAdd++;
         }
-        if(timer % 20 == 10)
-        {
-            y = y + 2;
-        }
-        setLocation(getX(),y);
     }
 }

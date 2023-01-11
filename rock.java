@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class rock extends Actor
+public class rock extends rps
 {
     /**
      * Act - do whatever the rock wants to do. This method is called whenever
@@ -15,36 +15,35 @@ public class rock extends Actor
     public static int countR = 0;
     public static int count = 0;
     
-    public static int timer = 0;
-    
-    
-    
-    GreenfootImage rk = new GreenfootImage("\\images\\rock.png");
+    public int timer = 0;
+
     public rock()
     {
-        rk.scale(50,50);
+        super("rock");
+        rk.scale(size,size);
         setImage(rk);
         countR++;
     }
     
     public void act() 
     {
-        bob();
-        timer++;
-    }    
-    
-// Bobs the objects up and down giving a better feel for the game
-    public void bob()
-    {
-        int y = getY();
-        if(timer % 10 == 0)
-        {
-            y = y - 1;
-        }
-        if(timer % 20 == 10)
-        {
-            y = y + 2;
-        }
-        setLocation(getX(),y);
+        shift();
+        bump();
+        remove();
     }
+    
+    public void bump()
+    {
+        if(isTouching(paper.class))
+        {
+            MyWorld world = (MyWorld) getWorld();
+            world.toAddX[world.toAdd] = getX();
+            world.toAddY[world.toAdd] = getY();
+            world.toAddType[world.toAdd] = "paper";
+            world.removeObject(this);
+            world.replace(world.toAdd);
+            world.toAdd++;
+        }
+    }
+
 }
