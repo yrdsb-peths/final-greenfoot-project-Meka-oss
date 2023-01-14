@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class wager extends Actor
+public class border extends Actor
 {
     /**
      * Act - do whatever the wager wants to do. This method is called whenever
@@ -15,11 +15,13 @@ public class wager extends Actor
     GreenfootImage rectangle = new GreenfootImage(200, 600);
     
     public int score = 0;
-    public wager(String ftype){
+    public border(String ftype){
         if(ftype == "border")
         {
             rectangle.setColor(greenfoot.Color.BLACK);
             rectangle.drawLine(0,0,0,600);
+            rectangle.drawLine(0,100,200,100);
+            rectangle.drawLine(0,225,200,225);
             setImage(rectangle);
             
             score = 10;

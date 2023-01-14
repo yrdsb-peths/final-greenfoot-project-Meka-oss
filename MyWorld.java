@@ -19,6 +19,8 @@ public class MyWorld extends World
     public int paperCount;
     public int scissorsCount;
     
+    rps time = new Timer(0,100);
+    
     Label countP = new Label(0,50);
     Label P = new Label("Paper",20);
         
@@ -28,12 +30,15 @@ public class MyWorld extends World
     Label countS = new Label(0,50);
     Label S = new Label("Scissor",20);
     
-    wager border = new wager("border");
-    Label lastWin = new Label("TBD",75);
+    border border = new border("border");
+    Label lastWin = new Label("TBD",60);
+    Label lastWinLabel = new Label("Last Win",25);
     
-    Label countTotal = new Label(0,100);
+    Label currency = new Label(10,85);
+    Label currencyLabel = new Label("Coins",35);
     
-    rps time = new Timer(0,100);
+    Label wagers = new Label("Wagers",65);
+    Label amount = new Label("Choose\nAmount",35);
     
     public MyWorld()
     {    
@@ -41,10 +46,6 @@ public class MyWorld extends World
         super(800, 600, 1);
         
         startup();
-        
-        addObject(time,75,75);
-        
-        addObject(countTotal,400, 50);
         
         addObject(countS,550,50);
         addObject(S,550,20);
@@ -56,7 +57,15 @@ public class MyWorld extends World
         addObject(R,445,20);
         
         addObject(border,700,300);
-        addObject(lastWin,700,300);
+        
+        addObject(lastWin,700,65);
+        addObject(lastWinLabel,700,25);
+        
+        addObject(currency,700,180);
+        addObject(currencyLabel,700,125);
+        
+        addObject(wagers,700,280);
+        addObject(amount,700,350);
     }
     
     public void startup()
@@ -80,11 +89,11 @@ public class MyWorld extends World
         addRPS();
         
         rps.timer = 0;
-        addObject(time,75,75);
+        addObject(time,60,60);
+        
         
         gameEnd = false;
         gamePause = false;
-        
     }
     
     
