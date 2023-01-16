@@ -202,5 +202,6 @@ public class MyWorld extends World
         rock.setImage(Wagers.Rock);
         paper.setImage(Wagers.Paper);
         scissors.setImage(Wagers.Scissors);
+        bet.setImage(Wagers.placeholder);
     }
 }

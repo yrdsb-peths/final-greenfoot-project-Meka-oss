@@ -100,25 +100,26 @@ public class Timer extends rps
     public void pauseGame()
     {
         MyWorld world = (MyWorld) getWorld();
-        world.endGame();
         winner = world.winner;
-        if(counter <= 0 && Greenfoot.isKeyDown("space") && world.gameEnd == false)
+        world.endGame();
+        
+        if(!world.gamePause) timer++;
+        
+        if(Greenfoot.isKeyDown("space") && counter < 0 && world.gameEnd == false)
         {
             world.gamePause = !world.gamePause;
             counter = 10;
         }
-        
     }
     
     public void act()
     {
         pauseGame();
-        timer++;
         counter--;
-        if(timer%60==0)
-        {
-            setValue(timer/60);
-        }
+        if(timer<240) setFillColor(greenfoot.Color.GREEN);
+        if(timer%60==0) setValue(timer/60);
+        if(timer>240) setFillColor(greenfoot.Color.RED);
+        
         remove();
     }
 }

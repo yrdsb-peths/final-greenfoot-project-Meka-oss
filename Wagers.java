@@ -24,7 +24,7 @@ public class Wagers extends Actor
     public static String currentBet;
     public static int currentBetValue;
     
-    GreenfootImage placeholder = new GreenfootImage("\\images\\Placeholder.png");
+    static GreenfootImage placeholder = new GreenfootImage("\\images\\Placeholder.png");
     
     static GreenfootImage Rock = new GreenfootImage("\\images\\rock.png");
     static GreenfootImage Paper = new GreenfootImage("\\images\\paper.png");
@@ -82,7 +82,7 @@ public class Wagers extends Actor
     
     public void setAmount()
     {
-         if(type == "bet"&&Greenfoot.mousePressed(this)&&rps.timer<180&&!betPlaced)
+         if(type == "bet"&&Greenfoot.mousePressed(this)&&rps.timer<240&&!betPlaced)
          {
              f = Greenfoot.ask("How much do you want to wager (Numbers only)");
              
@@ -104,7 +104,7 @@ public class Wagers extends Actor
     
     public void choice()
     {
-        if(choiceMade == false)
+        if(choiceMade == false && rps.timer<240)
         {
             if(Greenfoot.mousePressed(this) && type == "Rock")
             {
@@ -160,6 +160,7 @@ public class Wagers extends Actor
         if(type == "Rock") setImage(Rock);
         if(type == "Paper") setImage(Paper);
         if(type == "Scissors") setImage(Scissors);
+        if(type == "bet label") setImage(placeholder);
     }
     
     public void updateImages()
