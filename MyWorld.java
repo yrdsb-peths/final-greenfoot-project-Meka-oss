@@ -34,11 +34,15 @@ public class MyWorld extends World
     Label lastWin = new Label("TBD",60);
     Label lastWinLabel = new Label("Last Win",25);
     
-    Label currency = new Label(10,85);
+    Wagers currency = new Wagers("purse");
     Label currencyLabel = new Label("Coins",35);
     
     Label wagers = new Label("Wagers",65);
-    Label amount = new Label("Choose\nAmount",35);
+    Wagers bet = new Wagers("bet");
+    
+    Wagers rock = new Wagers("rock");
+    Wagers paper = new Wagers("paper");
+    Wagers scissors = new Wagers("scissors");
     
     public MyWorld()
     {    
@@ -65,7 +69,11 @@ public class MyWorld extends World
         addObject(currencyLabel,700,125);
         
         addObject(wagers,700,280);
-        addObject(amount,700,350);
+        addObject(bet,700,350);
+        
+        addObject(rock,640,435);
+        addObject(paper,710,435);
+        addObject(scissors,770,435);
     }
     
     public void startup()
@@ -161,21 +169,21 @@ public class MyWorld extends World
         {
             gamePause = true;
             gameEnd = true;
-            winner = "Rock";
+            winner = "rock";
             lastWin.setValue("Rock");
         }
         else if(paperCount == totalCount)
         {
             gamePause = true;
             gameEnd = true;
-            winner = "Paper";
+            winner = "paper";
             lastWin.setValue("Paper");
         }
         else if(scissorsCount == totalCount)
         {
             gamePause = true;
             gameEnd = true;
-            winner = "Scissor";
+            winner = "scissors";
             lastWin.setValue("Scissors");
         }
     }
