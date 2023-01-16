@@ -1,11 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * Write a description of class Wagers here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mekaeel
+ * @version 2.1
  */
+
 public class MyWorld extends World
 {
     
@@ -40,9 +41,11 @@ public class MyWorld extends World
     Label wagers = new Label("Wagers",65);
     Wagers bet = new Wagers("bet");
     
-    Wagers rock = new Wagers("rock");
-    Wagers paper = new Wagers("paper");
-    Wagers scissors = new Wagers("scissors");
+    Wagers rock = new Wagers("Rock");
+    Wagers paper = new Wagers("Paper");
+    Wagers scissors = new Wagers("Scissors");
+    
+    Wagers betLabel = new Wagers("bet label");
     
     public MyWorld()
     {    
@@ -71,9 +74,11 @@ public class MyWorld extends World
         addObject(wagers,700,280);
         addObject(bet,700,350);
         
-        addObject(rock,640,435);
-        addObject(paper,710,435);
+        addObject(rock,635,435);
+        addObject(paper,705,435);
         addObject(scissors,770,435);
+        
+        addObject(betLabel,700,535);
     }
     
     public void startup()
@@ -165,26 +170,37 @@ public class MyWorld extends World
     
     public void endGame()
     {
+        winner = "";
         if(rockCount == totalCount)
         {
             gamePause = true;
             gameEnd = true;
-            winner = "rock";
+            winner = "Rock";
             lastWin.setValue("Rock");
+            resetImages();
         }
         else if(paperCount == totalCount)
         {
             gamePause = true;
             gameEnd = true;
-            winner = "paper";
+            winner = "Paper";
             lastWin.setValue("Paper");
+            resetImages();
         }
         else if(scissorsCount == totalCount)
         {
             gamePause = true;
             gameEnd = true;
-            winner = "scissors";
+            winner = "Scissors";
             lastWin.setValue("Scissors");
+            resetImages();
         }
+    }
+    
+    public void resetImages()
+    {
+        rock.setImage(Wagers.Rock);
+        paper.setImage(Wagers.Paper);
+        scissors.setImage(Wagers.Scissors);
     }
 }

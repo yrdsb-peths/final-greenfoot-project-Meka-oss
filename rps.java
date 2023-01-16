@@ -1,11 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class rps here.
+ * Write a description of class Wagers here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mekaeel
+ * @version 2.1
  */
+
 public class rps extends Actor
 {
     /**

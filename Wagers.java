@@ -3,9 +3,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Wagers here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mekaeel
+ * @version 2.1
  */
+
 public class Wagers extends Actor
 {
     /**
@@ -25,28 +26,31 @@ public class Wagers extends Actor
     
     GreenfootImage placeholder = new GreenfootImage("\\images\\Placeholder.png");
     
-    GreenfootImage rock = new GreenfootImage("\\images\\rock.png");
-    GreenfootImage paper = new GreenfootImage("\\images\\paper.png");
-    GreenfootImage scissors = new GreenfootImage("\\images\\scissors.png");
+    static GreenfootImage Rock = new GreenfootImage("\\images\\rock.png");
+    static GreenfootImage Paper = new GreenfootImage("\\images\\paper.png");
+    static GreenfootImage Scissors = new GreenfootImage("\\images\\scissors.png");
     
     
-    GreenfootImage rockChosen = new GreenfootImage("\\images\\rockChosen.png");
-    GreenfootImage paperChosen = new GreenfootImage("\\images\\paperChosen.png");
-    GreenfootImage scissorsChosen = new GreenfootImage("\\images\\scissorsChosen.png");
+    GreenfootImage RockChosen = new GreenfootImage("\\images\\rockChosen.png");
+    GreenfootImage PaperChosen = new GreenfootImage("\\images\\paperChosen.png");
+    GreenfootImage ScissorsChosen = new GreenfootImage("\\images\\scissorsChosen.png");
     
     GreenfootImage purseLabel = new GreenfootImage(Integer.toString(purse),85,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
+    
+    GreenfootImage betLabel = new GreenfootImage("TBD",65,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
+    
     
     public Wagers(String ftype)
     {
         type = ftype;
         
-        rock.scale(50,50);
-        paper.scale(50,50);
-        scissors.scale(50,50);
+        Rock.scale(50,50);
+        Paper.scale(50,50);
+        Scissors.scale(50,50);
         
-        rockChosen.scale(50,50);
-        paperChosen.scale(50,50);
-        scissorsChosen.scale(50,50);
+        RockChosen.scale(50,50);
+        PaperChosen.scale(50,50);
+        ScissorsChosen.scale(50,50);
         
         if(type == "bet")
         {
@@ -57,9 +61,10 @@ public class Wagers extends Actor
             choiceMade = false;
             currentBet = "";
         }
-        if(type == "rock") setImage(rock);
-        if(type == "paper") setImage(paper);
-        if(type == "scissors") setImage(scissors);
+        if(type == "bet label") setImage(betLabel);
+        if(type == "Rock") setImage(Rock);
+        if(type == "Paper") setImage(Paper);
+        if(type == "Scissors") setImage(Scissors);
         if(type == "purse") setImage(purseLabel);
         
         purse = 10;
@@ -69,12 +74,10 @@ public class Wagers extends Actor
     {
         setAmount();
         choice();
-        if(type == "purse")
-        {
-            purseLabel = new GreenfootImage(Integer.toString(purse),85,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
-            setImage(purseLabel);
-        }
+        updateImages();
         result();
+        bankrupt();
+        
     }
     
     public void setAmount()
@@ -82,10 +85,19 @@ public class Wagers extends Actor
          if(type == "bet"&&Greenfoot.mousePressed(this)&&rps.timer<180&&!betPlaced)
          {
              f = Greenfoot.ask("How much do you want to wager (Numbers only)");
-             GreenfootImage currentBetLabel = new GreenfootImage(f,70,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
-             setImage(currentBetLabel);
              
-             currentBetValue = Integer.valueOf(f);
+             if(Integer.valueOf(f) > purse)
+             {
+                 setAmount();
+             }
+             if(Integer.valueOf(f) <= purse)
+             {
+                 currentBetValue = Integer.valueOf(f);
+                 GreenfootImage currentBetLabel = new GreenfootImage(f,70,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
+                 setImage(currentBetLabel);
+             }
+             
+             
              betPlaced = true;
          }
     }
@@ -94,23 +106,23 @@ public class Wagers extends Actor
     {
         if(choiceMade == false)
         {
-            if(Greenfoot.mousePressed(this) && type == "rock")
+            if(Greenfoot.mousePressed(this) && type == "Rock")
             {
-                setImage(rockChosen);
+                setImage(RockChosen);
                 choiceMade = true;
-                currentBet = "rock";
+                currentBet = "Rock";
             }
-            if(Greenfoot.mousePressed(this) && type == "paper")
+            if(Greenfoot.mousePressed(this) && type == "Paper")
             {
-                setImage(paperChosen);
+                setImage(PaperChosen);
                 choiceMade = true;
-                currentBet = "paper";
+                currentBet = "Paper";
             }
-            if(Greenfoot.mousePressed(this) && type == "scissors")
+            if(Greenfoot.mousePressed(this) && type == "Scissors")
             {
-                setImage(scissorsChosen);
+                setImage(ScissorsChosen);
                 choiceMade = true;
-                currentBet = "scissors";
+                currentBet = "Scissors";
             }
         }
     }
@@ -118,13 +130,21 @@ public class Wagers extends Actor
     public void result()
     {
         MyWorld world = (MyWorld) getWorld();
-        System.out.println(world.winner);
-        System.out.println(currentBet);
         
-        if(currentBet != "" && world.winner == currentBet)
+        if(currentBet != "")
         {
-            purse = purse + currentBetValue;
-            reset();
+            if(world.winner == currentBet)
+            {
+                purse = purse + currentBetValue;
+                reset();
+                world.winner = "";
+            }
+             if(world.winner != "" && world.winner != currentBet)
+            {
+                purse = purse - currentBetValue;
+                reset();
+                world.winner = "";
+            }
         }
     }
     
@@ -133,8 +153,38 @@ public class Wagers extends Actor
         choiceMade = false;
         betPlaced = false;
         currentBet = "";
-        if(type == "rock") setImage(rock);
-        if(type == "paper") setImage(paper);
-        if(type == "scissors") setImage(scissors);
+    }
+    
+    public void resetImage(Object r)
+    {
+        if(type == "Rock") setImage(Rock);
+        if(type == "Paper") setImage(Paper);
+        if(type == "Scissors") setImage(Scissors);
+    }
+    
+    public void updateImages()
+    {
+        if(type == "purse")
+        {
+            purseLabel = new GreenfootImage(Integer.toString(purse),85,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
+            setImage(purseLabel);
+        }
+        if(type == "bet label" && currentBet != "")
+        {
+            betLabel = new GreenfootImage(currentBet,65,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
+            setImage(betLabel);
+        }
+    }
+    
+    public void bankrupt()
+    {
+        if(purse <= 0)
+        {
+            Greenfoot.setWorld(new lostWorld());
+        }
+        if(purse >= 100)
+        {
+            Greenfoot.setWorld(new wonWorld());
+        }
     }
 }
