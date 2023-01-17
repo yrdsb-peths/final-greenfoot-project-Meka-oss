@@ -95,8 +95,11 @@ public class Timer extends rps
         setImage(new GreenfootImage(value, fontSize, fillColor, transparent, lineColor));
     }
     
+    // Allows the user to pause the game safely without accidentally unpausing it
+    
     static int counter = 0;
     public static String winner = "";
+    
     public void pauseGame()
     {
         MyWorld world = (MyWorld) getWorld();
@@ -112,11 +115,14 @@ public class Timer extends rps
         }
     }
     
+    // Calls the function and also increases the timer every act
+    
     public void act()
     {
         pauseGame();
         counter--;
         if(timer<240) setFillColor(greenfoot.Color.GREEN);
+        if(timer==1) setValue(0);
         if(timer%60==0) setValue(timer/60);
         if(timer>240) setFillColor(greenfoot.Color.RED);
         

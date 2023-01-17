@@ -14,8 +14,7 @@ public class paper extends rps
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
-    public int timer = 0;
-    public static int count = 0;
+    // Creates a paper RPS object and scales the images to a chosen size
     
     public paper()
     {
@@ -25,6 +24,8 @@ public class paper extends rps
         
     }
     
+    // Calls the functions created every frame
+    
     public void act() 
     {
         shift();
@@ -32,7 +33,7 @@ public class paper extends rps
         remove();
     }    
     
-    MyWorld world = (MyWorld) getWorld();
+    // Using the placeholder function added to remove itself if it touches the opposite object
     
     public void bump()
     {

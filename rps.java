@@ -12,15 +12,21 @@ public class rps extends Actor
     /**
      * Act - do whatever the rps wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
-     */    
+     */
+    
+    // Setting up the necessary variables for the class
     
     public static int timer = 0;
     public String type;
     public int size = 30;
     
+    // Creating the images that are used for the objects
+    
     GreenfootImage rk = new GreenfootImage("\\images\\rock.png");
     GreenfootImage pp = new GreenfootImage("\\images\\paper.png");
     GreenfootImage sc = new GreenfootImage("\\images\\scissors.png");
+    
+    // Adding values whenever a new object is created, as well as setting the type
     
     public rps(String ftype)
     {
@@ -40,17 +46,18 @@ public class rps extends Actor
         type = ftype;
     }
     
-    public int change(int c)
-    {
-        return c - Greenfoot.getRandomNumber(c*2);
-    }
+    // A placeholder for the replacing function that will be tailored for each type
     
     public void bump(){}
+    
+    // Setting up the different values used for randomly moving the objects around
     
     int changeX;
     int changeY;
     public int destinationX = (Greenfoot.getRandomNumber(500)) + 50;
     public int destinationY = (Greenfoot.getRandomNumber(500)) + 50;
+    
+    // Randomly moves the RPS objects around using Greenfoot.getRandomNumber()
     
     public void shift()
     {        
@@ -89,6 +96,8 @@ public class rps extends Actor
             
         }
     }
+    
+    // Getting rid of all the objects once the game has finished
     
     public void remove() {
         MyWorld world = (MyWorld) getWorld();

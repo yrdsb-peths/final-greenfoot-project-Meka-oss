@@ -14,8 +14,7 @@ public class scissors extends rps
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
-    public static int count = 0;
-    public int timer = 0;
+    // Creates a paper RPS object and scales the images to a chosen size
     
     public scissors()
     {
@@ -25,13 +24,17 @@ public class scissors extends rps
         setRotation(180);
     }
     
+    // Calls the functions created every frame
+    
     public void act() 
     {
         shift();
         bump();
         remove();
     }
-    
+
+    // Using the placeholder function added to remove itself if it touches the opposite object
+
     public void bump()
     {
         if(isTouching(rock.class))

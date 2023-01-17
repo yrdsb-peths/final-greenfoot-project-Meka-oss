@@ -12,6 +12,7 @@ public class titleWorld extends World
     /**
      * Constructor for objects of class titleWorld.
      * 
+     * Creating the different text blocks that will be displayed
      */
     
     Label title = new Label("Rock, Paper\nScissors!",125);
@@ -32,6 +33,10 @@ public class titleWorld extends World
         addObject(rules,400,400);
         addObject(start,400,525);
     }
+    
+    /**
+     * @act is called during every frame by Greenfoot it is used to check for when to switch worlds
+     */
     
     public void act()
     {

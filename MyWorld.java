@@ -13,12 +13,8 @@ public class MyWorld extends World
     /**
      * Constructor for objects of class MyWorld.
      * 
+     * Creating all the different objects that will be used
      */
-    
-    
-    public int rockCount;
-    public int paperCount;
-    public int scissorsCount;
     
     rps time = new Timer(0,100);
     
@@ -54,6 +50,8 @@ public class MyWorld extends World
         
         startup();
         
+        // Adding all the objects I created into the world
+        
         addObject(countS,550,50);
         addObject(S,550,20);
         
@@ -80,6 +78,15 @@ public class MyWorld extends World
         
         addObject(betLabel,700,535);
     }
+    
+    // Creating placeholders to count how many of each type is currently on the field
+    
+    public int rockCount;
+    public int paperCount;
+    public int scissorsCount;
+    public int totalCount;
+    
+    // A function that contains all the parts needed to create the auto RPS System
     
     public void startup()
     {
@@ -109,13 +116,14 @@ public class MyWorld extends World
         gamePause = false;
     }
     
+    // These are lists that store all the necessary data for changing an RPS object when they collide
     
     public int[] toAddX = new int[30000];
     public int[] toAddY = new int[30000];
     public String[] toAddType = new String[30000];
     public int toAdd = 0;
     
-    public int totalCount;
+    // This is used to replace and RPS object when it collides with another
     
     public void replace(int index)
     {
@@ -140,10 +148,14 @@ public class MyWorld extends World
             rockCount--;
             paperCount++;
         }
+        
+        
         countP.setValue(paperCount);
         countS.setValue(scissorsCount);
         countR.setValue(rockCount);
     }
+    
+    // Adds one Rock, one Paper and one Scissors object randomly in the world
     
     public void addRPS()
     {
@@ -163,10 +175,14 @@ public class MyWorld extends World
         totalCount = totalCount + 3;
     }
     
+    // These are variables used to check if the game should end or be paused, as well as if a winner has been decided
+    
     public boolean gamePause = false;
     public boolean gameEnd = false;
     
     public String winner = "";
+    
+    // Checks if there is only one type of RPS object left in the world, and resets it if there is
     
     public void endGame()
     {
@@ -196,6 +212,8 @@ public class MyWorld extends World
             resetImages();
         }
     }
+    
+    // Resets the betting images
     
     public void resetImages()
     {

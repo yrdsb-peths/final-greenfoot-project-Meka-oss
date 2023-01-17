@@ -14,15 +14,16 @@ public class Wagers extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
+    // Overall variables that are used for choosing a winner and placing a bet 
+    
     public static int purse = 10;
     public static String f;
-    public String type;
-    
-    
     public static boolean betPlaced = false;
     public static boolean choiceMade = false;
     public static String currentBet;
     public static int currentBetValue;
+    
+    // The base images used to choose bets
     
     static GreenfootImage placeholder = new GreenfootImage("\\images\\Placeholder.png");
     
@@ -30,15 +31,21 @@ public class Wagers extends Actor
     static GreenfootImage Paper = new GreenfootImage("\\images\\paper.png");
     static GreenfootImage Scissors = new GreenfootImage("\\images\\scissors.png");
     
+    GreenfootImage purseLabel = new GreenfootImage(Integer.toString(purse),85,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
+    
+    GreenfootImage betLabel = new GreenfootImage("TBD",65,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
+    
+    // The darkened images used to show a choice
     
     GreenfootImage RockChosen = new GreenfootImage("\\images\\rockChosen.png");
     GreenfootImage PaperChosen = new GreenfootImage("\\images\\paperChosen.png");
     GreenfootImage ScissorsChosen = new GreenfootImage("\\images\\scissorsChosen.png");
     
-    GreenfootImage purseLabel = new GreenfootImage(Integer.toString(purse),85,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
+    // A way to differentiate between the different objects using this class
     
-    GreenfootImage betLabel = new GreenfootImage("TBD",65,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
+    public String type;
     
+    // Runs whenever a Wagers object is created, 
     
     public Wagers(String ftype)
     {
@@ -52,6 +59,8 @@ public class Wagers extends Actor
         PaperChosen.scale(50,50);
         ScissorsChosen.scale(50,50);
         
+        // Creating the betting button and reseting the associated values
+        
         if(type == "bet")
         {
             placeholder.scale(127,67);
@@ -61,14 +70,20 @@ public class Wagers extends Actor
             choiceMade = false;
             currentBet = "";
         }
+        
+        purse = 10;
+        
+        // Settting the images for the different types of objects
+        
         if(type == "bet label") setImage(betLabel);
         if(type == "Rock") setImage(Rock);
         if(type == "Paper") setImage(Paper);
         if(type == "Scissors") setImage(Scissors);
         if(type == "purse") setImage(purseLabel);
         
-        purse = 10;
     }
+    
+    // Calls all the different function that create the wager system
     
     public void act()
     {
@@ -77,19 +92,26 @@ public class Wagers extends Actor
         updateImages();
         result();
         bankrupt();
-        
     }
+    
+    // Setting the amount that you want to wager using the Greenfoot.ask() function, and reseting if the value isn't acceptable using recursion 
     
     public void setAmount()
     {
          if(type == "bet"&&Greenfoot.mousePressed(this)&&rps.timer<240&&!betPlaced)
          {
              f = Greenfoot.ask("How much do you want to wager (Numbers only)");
+             try {
+                 int d = Integer.parseInt(f);
+             } catch (NumberFormatException nfe) {
+                 setAmount();
+             }
              
              if(Integer.valueOf(f) > purse)
              {
                  setAmount();
              }
+             
              if(Integer.valueOf(f) <= purse)
              {
                  currentBetValue = Integer.valueOf(f);
@@ -97,10 +119,12 @@ public class Wagers extends Actor
                  setImage(currentBetLabel);
              }
              
-             
+             // Stops the user from changing the value after choosing it the first time
              betPlaced = true;
          }
     }
+    
+    // Checks if the user has chosen their predicted winner and highlights the object you select
     
     public void choice()
     {
@@ -127,11 +151,13 @@ public class Wagers extends Actor
         }
     }
     
+    // After a winner has been chosen from the world function, this function adds or subtracts the wager from the users purse
+    
     public void result()
     {
         MyWorld world = (MyWorld) getWorld();
         
-        if(currentBet != "")
+        if(world.winner != "")
         {
             if(world.winner == currentBet)
             {
@@ -139,7 +165,7 @@ public class Wagers extends Actor
                 reset();
                 world.winner = "";
             }
-             if(world.winner != "" && world.winner != currentBet)
+             if(world.winner != currentBet)
             {
                 purse = purse - currentBetValue;
                 reset();
@@ -148,6 +174,8 @@ public class Wagers extends Actor
         }
     }
     
+    // Resets the variables that stop the user from recinding their bets
+    
     public void reset()
     {
         choiceMade = false;
@@ -155,13 +183,7 @@ public class Wagers extends Actor
         currentBet = "";
     }
     
-    public void resetImage(Object r)
-    {
-        if(type == "Rock") setImage(Rock);
-        if(type == "Paper") setImage(Paper);
-        if(type == "Scissors") setImage(Scissors);
-        if(type == "bet label") setImage(placeholder);
-    }
+    // Resets the necessary images when required
     
     public void updateImages()
     {
@@ -177,13 +199,15 @@ public class Wagers extends Actor
         }
     }
     
+    // Changes the world depending if the purse is empty or has reached its goal
+    
     public void bankrupt()
     {
         if(purse <= 0)
         {
             Greenfoot.setWorld(new lostWorld());
         }
-        if(purse >= 100)
+        if(purse >= 50)
         {
             Greenfoot.setWorld(new wonWorld());
         }

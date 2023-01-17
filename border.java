@@ -13,9 +13,11 @@ public class border extends Actor
      * Act - do whatever the wager wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    // Creating the border object that sits under all the others
+    
     GreenfootImage rectangle = new GreenfootImage(200, 600);
     
-    public int score = 0;
     public border(String ftype){
         if(ftype == "border")
         {
@@ -24,12 +26,6 @@ public class border extends Actor
             rectangle.drawLine(0,100,200,100);
             rectangle.drawLine(0,225,200,225);
             setImage(rectangle);
-            
-            score = 10;
         }
-    }
-    
-    public void act()
-    {
     }
 }

@@ -13,18 +13,17 @@ public class rock extends rps
      * Act - do whatever the rock wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public static int countR = 0;
-    public static int count = 0;
-    
-    public int timer = 0;
 
+    // Creates a paper RPS object and scales the images to a chosen size
+    
     public rock()
     {
         super("rock");
         rk.scale(size,size);
         setImage(rk);
-        countR++;
     }
+    
+    // Calls the functions created every frame
     
     public void act() 
     {
@@ -32,6 +31,8 @@ public class rock extends rps
         bump();
         remove();
     }
+    
+    // Using the placeholder function added to remove itself if it touches the opposite object
     
     public void bump()
     {
