@@ -94,11 +94,11 @@ public class Wagers extends Actor
         bankrupt();
     }
     
-    // Setting the amount that you want to wager using the Greenfoot.ask() function, and reseting if the value isn't acceptable using recursion 
+    // Setting the amount that you want to wager using the Greenfoot.ask() function, and reseting if the value isn't acceptable using recursion
     
     public void setAmount()
     {
-         if(type == "bet"&&Greenfoot.mousePressed(this)&&rps.timer<240&&!betPlaced)
+         if(type == "bet"&&Greenfoot.mousePressed(this)&&rps.timer<360&&!betPlaced)
          {
              f = Greenfoot.ask("How much do you want to wager (Numbers only)");
              try {
@@ -128,7 +128,7 @@ public class Wagers extends Actor
     
     public void choice()
     {
-        if(choiceMade == false && rps.timer<240)
+        if(choiceMade == false && rps.timer<360)
         {
             if(Greenfoot.mousePressed(this) && type == "Rock")
             {
