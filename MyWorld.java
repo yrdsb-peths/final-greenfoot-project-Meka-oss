@@ -217,9 +217,9 @@ public class MyWorld extends World
     
     public void resetImages()
     {
-        rock.setImage(Wagers.Rock);
-        paper.setImage(Wagers.Paper);
-        scissors.setImage(Wagers.Scissors);
+        rock.setImage(Wagers.Rock[0]);
+        paper.setImage(Wagers.Paper[0]);
+        scissors.setImage(Wagers.Scissors[0]);
         bet.setImage(Wagers.placeholder);
     }
 }

@@ -122,7 +122,8 @@ public class Timer extends rps
         pauseGame();
         counter--;
         if(timer<180) setFillColor(greenfoot.Color.GREEN);
-        if(timer>180 && timer<360) setFillColor(greenfoot.Color.YELLOW);
+        if(timer>180 && timer<240) setFillColor(greenfoot.Color.YELLOW);
+        if(timer>240 && timer<360) setFillColor(greenfoot.Color.ORANGE);
         if(timer>360) setFillColor(greenfoot.Color.RED);
         if(timer==1) setValue(0);
         if(timer%60==0) setValue(timer/60);

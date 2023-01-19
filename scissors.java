@@ -14,6 +14,10 @@ public class scissors extends rps
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
+    // Sound that will play whenever the object is destroyed
+    
+    GreenfootSound scissorsSound = new GreenfootSound("\\sounds\\scissors.mp3");
+    
     // Creates a paper RPS object and scales the images to a chosen size
     
     public scissors()
@@ -39,6 +43,9 @@ public class scissors extends rps
     {
         if(isTouching(rock.class))
         {
+            scissorsSound.setVolume(10);
+            scissorsSound.play();
+            
             MyWorld world = (MyWorld) getWorld();
             world.toAddX[world.toAdd] = getX();
             world.toAddY[world.toAdd] = getY();

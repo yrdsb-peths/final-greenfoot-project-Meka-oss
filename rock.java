@@ -13,6 +13,10 @@ public class rock extends rps
      * Act - do whatever the rock wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    // Sound that will play whenever the object is destroyed
+    
+    GreenfootSound rockSound = new GreenfootSound("\\sounds\\rock.mp3");
 
     // Creates a paper RPS object and scales the images to a chosen size
     
@@ -38,6 +42,9 @@ public class rock extends rps
     {
         if(isTouching(paper.class))
         {
+            rockSound.setVolume(10);
+            rockSound.play();
+            
             MyWorld world = (MyWorld) getWorld();
             world.toAddX[world.toAdd] = getX();
             world.toAddY[world.toAdd] = getY();

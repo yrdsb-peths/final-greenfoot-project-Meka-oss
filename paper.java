@@ -14,6 +14,10 @@ public class paper extends rps
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
+    // Sound that will play whenever the object is destroyed
+    
+    GreenfootSound paperSound = new GreenfootSound("\\sounds\\paper.mp3");
+    
     // Creates a paper RPS object and scales the images to a chosen size
     
     public paper()
@@ -39,6 +43,9 @@ public class paper extends rps
     {
         if(isTouching(scissors.class))
         {
+            paperSound.setVolume(10);
+            paperSound.play();
+            
             MyWorld world = (MyWorld) getWorld();
             world.toAddX[world.toAdd] = getX();
             world.toAddY[world.toAdd] = getY();

@@ -23,23 +23,21 @@ public class Wagers extends Actor
     public static String currentBet;
     public static int currentBetValue;
     
-    // The base images used to choose bets
+    // The base images shown before a bet is made
     
     static GreenfootImage placeholder = new GreenfootImage("\\images\\Placeholder.png");
     
-    static GreenfootImage Rock = new GreenfootImage("\\images\\rock.png");
-    static GreenfootImage Paper = new GreenfootImage("\\images\\paper.png");
-    static GreenfootImage Scissors = new GreenfootImage("\\images\\scissors.png");
+    // creating the arrays for the animation
+    
+    static GreenfootImage[] Rock = new GreenfootImage[2];
+    static GreenfootImage[] Paper = new GreenfootImage[2];
+    static GreenfootImage[] Scissors = new GreenfootImage[2];
     
     GreenfootImage purseLabel = new GreenfootImage(Integer.toString(purse),85,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
     
-    GreenfootImage betLabel = new GreenfootImage("TBD",65,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
+    GreenfootImage betLabel = new GreenfootImage("TBD",45,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
     
     // The darkened images used to show a choice
-    
-    GreenfootImage RockChosen = new GreenfootImage("\\images\\rockChosen.png");
-    GreenfootImage PaperChosen = new GreenfootImage("\\images\\paperChosen.png");
-    GreenfootImage ScissorsChosen = new GreenfootImage("\\images\\scissorsChosen.png");
     
     // A way to differentiate between the different objects using this class
     
@@ -49,15 +47,29 @@ public class Wagers extends Actor
     
     public Wagers(String ftype)
     {
+        // Adding the base images to the image array I created
+        Rock[0] = new GreenfootImage("\\images\\rock.png");
+        Paper[0] = new GreenfootImage("\\images\\paper.png");
+        Scissors[0] = new GreenfootImage("\\images\\scissors.png");
+        
+        // Adding in the second state for the animated image
+        Rock[1] = new GreenfootImage("\\images\\rockChosen.png");
+        Paper[1] = new GreenfootImage("\\images\\paperChosen.png");
+        Scissors[1] = new GreenfootImage("\\images\\scissorsChosen.png");
+        
+        
         type = ftype;
         
-        Rock.scale(50,50);
-        Paper.scale(50,50);
-        Scissors.scale(50,50);
+        // Scaling the images
         
-        RockChosen.scale(50,50);
-        PaperChosen.scale(50,50);
-        ScissorsChosen.scale(50,50);
+        Rock[0].scale(50,50);
+        Rock[1].scale(50,50);
+        
+        Paper[0].scale(50,50);
+        Paper[1].scale(50,50);
+        
+        Scissors[0].scale(50,50);
+        Scissors[1].scale(50,50);
         
         // Creating the betting button and reseting the associated values
         
@@ -76,9 +88,9 @@ public class Wagers extends Actor
         // Settting the images for the different types of objects
         
         if(type == "bet label") setImage(betLabel);
-        if(type == "Rock") setImage(Rock);
-        if(type == "Paper") setImage(Paper);
-        if(type == "Scissors") setImage(Scissors);
+        if(type == "Rock") setImage(Rock[0]);
+        if(type == "Paper") setImage(Paper[0]);
+        if(type == "Scissors") setImage(Scissors[0]);
         if(type == "purse") setImage(purseLabel);
         
     }
@@ -132,19 +144,19 @@ public class Wagers extends Actor
         {
             if(Greenfoot.mousePressed(this) && type == "Rock")
             {
-                setImage(RockChosen);
+                setImage(Rock[1]);
                 choiceMade = true;
                 currentBet = "Rock";
             }
             if(Greenfoot.mousePressed(this) && type == "Paper")
             {
-                setImage(PaperChosen);
+                setImage(Paper[1]);
                 choiceMade = true;
                 currentBet = "Paper";
             }
             if(Greenfoot.mousePressed(this) && type == "Scissors")
             {
-                setImage(ScissorsChosen);
+                setImage(Scissors[1]);
                 choiceMade = true;
                 currentBet = "Scissors";
             }
@@ -165,7 +177,7 @@ public class Wagers extends Actor
                 reset();
                 world.winner = "";
             }
-             if(world.winner != currentBet)
+            if(world.winner != currentBet)
             {
                 purse = purse - currentBetValue;
                 reset();
@@ -194,7 +206,7 @@ public class Wagers extends Actor
         }
         if(type == "bet label" && currentBet != "")
         {
-            betLabel = new GreenfootImage(currentBet,65,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
+            betLabel = new GreenfootImage(currentBet,45,greenfoot.Color.WHITE,greenfoot.Color.WHITE,greenfoot.Color.BLACK);
             setImage(betLabel);
         }
     }

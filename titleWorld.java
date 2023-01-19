@@ -20,6 +20,8 @@ public class titleWorld extends World
     Label rules = new Label("Pick who you think will win and\namass a fortune",55);
 
     Label start = new Label("Click here to start",50);
+    
+    Label tip = new Label("Tip: Make Sure You Place Your Bet Before\nThe Timer Reaches 6!",40);
 
     public titleWorld()
     {    
@@ -28,10 +30,12 @@ public class titleWorld extends World
 
         title.setFillColor(greenfoot.Color.BLACK);
         start.setFillColor(greenfoot.Color.GREEN);
+        tip.setFillColor(greenfoot.Color.BLUE);
 
-        addObject(title,400,175);
-        addObject(rules,400,400);
-        addObject(start,400,525);
+        addObject(title,400,135);
+        addObject(rules,400,335);
+        addObject(start,400,545);
+        addObject(tip,400,455);
         prepare();
     }
 
